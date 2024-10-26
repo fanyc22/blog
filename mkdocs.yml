@@ -2,3 +2,26 @@ site_name: Alex's Note
 site_url: https://www.yu-chen.fan
 theme:
   name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+plugins:
+  - search
+  - blog
+  - rss:
+      match_path: blog/posts/.* 
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
+        - tags
+nav:
+  - index.md
+  - Blog:
+    - blog/index.md
