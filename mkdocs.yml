@@ -1,21 +1,36 @@
 site_name: Alex's Note
 site_url: https://www.yu-chen.fan
+repo_url: https://github.com/fanyc22/blog
 theme:
   name: material
+  icon:
+    repo: fontawesome/brands/github
   language: zh
   features:
     - navigation.instant
     - navigation.tracking
+    - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.expand
     - navigation.path
     - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
 plugins:
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - offline
   - blog
+  - social:
+      cards_layout_options:
+        font_family: Noto Sans SC
+  - macros
   - rss:
-      match_path: blog/posts/.* 
+      match_path: blog/posts/.*
       date_from_meta:
         as_creation: date
       categories:
@@ -26,7 +41,7 @@ nav:
   - Blog:
     - blog/index.md
   - Security Basics for Computer Architects:
-    - 译序: SBCA/index.md
+    - 译序: SBCA/translator.md
     - ABSTRACT: SBCA/ABSTRACT.md
     - Preface: SBCA/Preface.md
     - C1 Threat-Based Design: SBCA/C1.md
@@ -42,3 +57,5 @@ extra_javascript:
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
+
+copyright: Copyright &copy; 2024 Yuchen Alex Fan
