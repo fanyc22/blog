@@ -1,9 +1,12 @@
 site_name: Alex's Note
 site_url: https://www.yu-chen.fan
 repo_url: https://github.com/fanyc22/blog
+edit_uri: edit/main/docs/
+site_author: Yuchen Alex Fan
 theme:
   name: material
   icon:
+    logo: material/library
     repo: fontawesome/brands/github
   language: zh
   features:
@@ -57,5 +60,11 @@ extra_javascript:
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://www.github.com/fanyc22
+      name: GitHub Repository
 
 copyright: Copyright &copy; 2024 Yuchen Alex Fan
