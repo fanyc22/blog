@@ -26,7 +26,8 @@ nav:
   - Blog:
     - blog/index.md
   - Security Basics for Computer Architects:
-    - SBCA/index.md
+    - 译序: SBCA/index.md
+    - ABSTRACT: SBCA/ABSTRACT.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
