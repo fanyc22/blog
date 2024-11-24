@@ -29,7 +29,7 @@ nav:
     - 译序: SBCA/index.md
     - ABSTRACT: SBCA/ABSTRACT.md
     - Preface: SBCA/Preface.md
-    - C1: Threat-Based Design: SBCA/C1.md
+    - C1 Threat-Based Design: SBCA/C1.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
