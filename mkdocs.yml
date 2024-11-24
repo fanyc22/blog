@@ -26,9 +26,6 @@ plugins:
   - search
   - offline
   - blog
-  - social:
-      cards_layout_options:
-        font_family: Noto Sans SC
   - rss:
       match_path: blog/posts/.*
       date_from_meta:
