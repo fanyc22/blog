@@ -25,6 +25,8 @@ nav:
   - index.md
   - Blog:
     - blog/index.md
+  - Security Basics for Computer Architects:
+    - SBCA/index.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
