@@ -1,3 +1,11 @@
+---
+draft: no
+date: 2024-10-24
+categories:
+  - Superscalar
+  - Microarchitecture
+  - Proceedings of the IEEE
+---
 # The Microarchitecture of Superscalar Processors
 
 ## 背景
