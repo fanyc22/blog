@@ -28,6 +28,8 @@ nav:
   - Security Basics for Computer Architects:
     - 译序: SBCA/index.md
     - ABSTRACT: SBCA/ABSTRACT.md
+    - Preface: SBCA/Preface.md
+    - C1: Threat-Based Design: SBCA/C1.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
