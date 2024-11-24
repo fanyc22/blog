@@ -24,8 +24,6 @@ theme:
     - content.action.edit
 plugins:
   - search
-  - git-revision-date-localized:
-      enable_creation_date: true
   - offline
   - blog
   - social:
