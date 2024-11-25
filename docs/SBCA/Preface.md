@@ -8,7 +8,7 @@
 ## OUTLINE OF THE BOOK
 
 在*第一章*中，我们介绍了**面向威胁的设计方法**，提供了现有的面向性能、功耗、面积、成本的实际方法以外的方法。
-我们定义了安全的三大特性：**机密性**、**完整性**、**可用性**。
+我们定义了安全的三大基石特性：**机密性**、**完整性**、**可用性**。
 (We define the cornerstone security properties of **Confidentiality**, **Integrity** and **Availability**.)
 我们还定义了基础性的访问控制，以及其他需要的安全特性。
 (We also define fundamental access control, as well as other desirable security properties.)
