@@ -35,7 +35,7 @@ plugins:
         - tags
 nav:
   - Home: index.md
-  - About: about.md
+  - About: about/index.md
   - Blog:
     - blog/index.md
   - Security Basics for Computer Architects:
