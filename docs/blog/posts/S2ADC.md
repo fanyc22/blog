@@ -2,6 +2,8 @@
 draft: no
 date: 2024-10-26
 categories:
+  - paper
+tags:
   - JSSC
   - DAC
   - Analog Security
