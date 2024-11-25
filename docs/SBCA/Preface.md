@@ -49,7 +49,7 @@
 然而，任何认真考虑设计安全计算机的读者都应该阅读全书。
 本书描述的基础安全概念允许我们同安全社区交流并且理解如何使用面向威胁的设计方法。
 
-为了简洁，我经常使用PALMS([Princeton Architecture Lab for Multimedia and Security](https://palms.ee.princeton.edu))实验室设计的架构作为例子，以便揭示如何本书中展示的安全理念可以用于设计软硬件安全架构。
+为了简洁，我经常使用PALMS(Princeton Architecture Lab for Multimedia and Security, http://palms.ee.princeton.edu)实验室设计的架构作为例子，以便揭示如何本书中展示的安全理念可以用于设计软硬件安全架构。
 这些例子对我非常熟悉，因此我可以更快地写作。
 我同样给出了一些其他设计的例子，以及许多领域广泛的参考文献和相关工作的列表。
 一本后续的书会更加详细地讨论新的计算机架构安全研究主题。
