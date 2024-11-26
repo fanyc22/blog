@@ -22,10 +22,10 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 可以在上方菜单寻找需要的内容。
 
-我的邮箱：fanyc22[at]mails[dot]tsinghua[dot]edu[dot]cn
+我的邮箱：fanyc22[at]mails.tsinghua.edu.cn
 
 This is my blog.
 
 You can explore this site via the nav above.
 
-Contact me: fanyc22[at]mails[dot]tsinghua[dot]edu[dot]cn
+Contact me: fanyc22[at]mails.tsinghua.edu.cn
