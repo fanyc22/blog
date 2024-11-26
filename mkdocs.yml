@@ -6,6 +6,8 @@ site_author: Yuchen Alex Fan
 theme:
   name: material
   icon:
+    # admonition:
+      # <type>: <icon>
     logo: material/library
     repo: fontawesome/brands/github
   language: zh
@@ -49,6 +51,9 @@ markdown_extensions:
   - footnotes
   - pymdownx.arithmatex:
       generic: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 
 extra_javascript:
   - javascripts/katex.js
@@ -67,3 +72,5 @@ extra:
       name: GitHub Repository
 
 copyright: Copyright &copy; 2024 Yuchen Alex Fan
+
+!!! Note
