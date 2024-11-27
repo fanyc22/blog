@@ -14,6 +14,8 @@ tags:
 
 《现代计算机体系结构》课程作业要求阅读1995年 J. Smith 和 G. Sohi 的论文 [The Microarchitecture of Superscalar Processors](https://ieeexplore.ieee.org/document/476078) 。本文是对这篇论文的学习和整理的笔记。
 
+<!-- more -->
+
 ## Abstract
 
 文章主要从4个方面讨论：
