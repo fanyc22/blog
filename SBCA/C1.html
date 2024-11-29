@@ -1,0 +1,1286 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Yuchen Alex Fan">
+      
+      
+        <link rel="canonical" href="https://www.yu-chen.fan/SBCA/C1.html">
+      
+      
+        <link rel="prev" href="Preface.html">
+      
+      
+        <link rel="next" href="C2.html">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+    
+    
+      
+        <title>C1 Threat-Based Design - Alex's Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#threat-based-design" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Alex's Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C1 Threat-Based Design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fanyc22/blog" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/index.html" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/index.html" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="translator.html" class="md-tabs__link">
+          
+  
+    
+  
+  Security Basics for Computer Architects
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Alex's Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fanyc22/blog" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../blog/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    归档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            归档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2024.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    分类
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            分类
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/category/paper.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    paper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/category/tools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Security Basics for Computer Architects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Security Basics for Computer Architects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="translator.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    译序
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ABSTRACT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ABSTRACT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Preface.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    C1 Threat-Based Design
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="C1.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    C1 Threat-Based Design
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      SECURITY PROPERTIES 安全特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SECURITY PROPERTIES 安全特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cornerstone-security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORNERSTONE SECURITY PROPERTIES 三大基石安全特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACCESS CONTROL 访问控制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trustworthy-versus-trusted" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRUSTWORTHY VERSUS TRUSTED 可信的与信任的
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threats-and-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      THREATS AND ATTACKS 威胁和攻击
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#countermeasures-and-defenses" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNTERMEASURES AND DEFENSES 对策和防御
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      THREAT MODEL 威胁模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-architecture-design-methodology" class="md-nav__link">
+    <span class="md-ellipsis">
+      SECURITY ARCHITECTURE DESIGN METHODOLOGY 安全架构设计方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="C2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C2 Security Policy Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      SECURITY PROPERTIES 安全特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SECURITY PROPERTIES 安全特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cornerstone-security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORNERSTONE SECURITY PROPERTIES 三大基石安全特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACCESS CONTROL 访问控制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trustworthy-versus-trusted" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRUSTWORTHY VERSUS TRUSTED 可信的与信任的
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threats-and-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      THREATS AND ATTACKS 威胁和攻击
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#countermeasures-and-defenses" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNTERMEASURES AND DEFENSES 对策和防御
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      THREAT MODEL 威胁模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-architecture-design-methodology" class="md-nav__link">
+    <span class="md-ellipsis">
+      SECURITY ARCHITECTURE DESIGN METHODOLOGY 安全架构设计方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/fanyc22/blog/edit/main/docs/SBCA/C1.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="threat-based-design">Threat-Based Design 面向威胁的设计方法</h1>
+<p>计算机设计时考虑到功能、性能、成本、功耗、面积和可用性。
+随着我们对于计算机的依赖日益提高，以及针对数字系统的网络攻击日益增多，设计提高安全的计算机系统变得至关重要。
+面向安全的设计假定攻击者的存在，其将尝试利用计算机系统进行恶意行为。
+我们称这种设计方式为<strong>面向威胁的设计方法</strong>。
+这种安全性设计应该与性能、成本、能源效率、小型化和可用性设计同时进行。</p>
+<p>那么什么是有风险的呢？
+举几个例子，国家和国际安全、金融交易和经济竞争力以及个人安全和隐私都面临风险。
+一般来说，对某人或某个实体有价值的资产都面临风险。这些资产的定义很广泛，可能包括信息技术 (IT) 基础设施、关键基础设施（例如电网）、知识产权、财务数据、服务可用性、生产力、敏感信息、个人信息和声誉。</p>
+<p>我们称一种<strong>威胁</strong>是一类攻击，其违背了一种或多种安全特性。
+我们称一个<strong>攻击</strong>是一个威胁的实例。
+为了更好地理解威胁和攻击，我们需要首先定义安全中的一些概念。</p>
+<h2 id="security-properties">SECURITY PROPERTIES 安全特性</h2>
+<h3 id="cornerstone-security-properties">CORNERSTONE SECURITY PROPERTIES 三大基石安全特性</h3>
+<p>计算机和通信系统需要或期望具有许多安全属性。
+其中三种属性被称为基石安全特性：</p>
+<ul>
+<li><strong>机密性</strong>(Confidentiality)</li>
+<li><strong>完整性</strong>(Integrity)</li>
+<li><strong>可用性</strong>(Availability)</li>
+</ul>
+<p>我们将其缩写为CIA，这很容易记忆，因为它与美国中央情报局同名。</p>
+<p><strong>机密性</strong>是指防止秘密或敏感信息对未授权的用户或实体泄露。
+<strong>完整性</strong>是指防止不能被察觉的未授权篡改。
+<strong>可用性</strong>是指确保系统对于合法用户是随时可用的。
+可用性同样也是提供一个可靠、可信且容错系统的目标，不过在安全的意义下，可用性必须考虑具有恶意意图的智能攻击者，而不仅仅是设备故障和故障。
+后者的特征更容易建模，相反其行为通常很难用概率分布建模。</p>
+<p>上述三者很难说谁更重要。
+机密性对于秘密的、敏感的、私有的信息最重要。
+对于机密性的违反在今天可能比以往更具破坏性，因为一旦机密信息呗公开在互联网上，就可以被所有人访问且永远无法删除。</p>
+<p>尽管如此，对于你的银行余额来说，虽然机密性很重要，但完整性可能更重要——你并不希望你的银行账户被第三方恶意篡改。</p>
+<p>可用性对于关键任务至关重要，诸如那些影响国家安全或者经济竞争的任务。
+例如，当股票经纪人需要进行在线股票交易时，互联网和在线交易服务的可用性（或其反面，拒绝服务，DOS）可能导致利润或损失的巨大差异。</p>
+<h3 id="access-control">ACCESS CONTROL 访问控制</h3>
+<p>保护敏感信息的机密性、完整性或可用性通常与限制只有那些被允许访问该信息的人才能访问有关，这也称为<strong>访问控制</strong>(access control)。
+例如，你使用密码向计算机系统<strong>认证</strong>(authenticate)你的身份，以便访问其资源和存储在其中的文档。
+登录到同一系统的系统管理员将被<strong>授权</strong>(authorized)执行比普通用户更多的功能。
+因此，我们说<strong>访问控制</strong>确保只有被<strong>授权</strong>访问某些信息的<strong>认证</strong>用户才能访问该材料，同时拒绝未经授权的各方访问。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>认证回答的问题是“谁能去？”
+我们考虑一个被认证了的人，John Bates。
+授权回答了问题“John Bates被允许做什么？”
+这两者在一起构成了对雨受保护对象的合法访问控制的重要组成部分。
+AAA的缩写可以帮助我们记住这个重要的安全方法：访问控制，包括认证和授权(Access control, comprising Authentication and Authorization)。
+认证和授权的概念可以适用于计算机、设备和程序，而不仅仅对人类。</p>
+<p>表格1.1列出了基石安全特性以及其他几个我们想要的安全特性。
+了解其他想要的安全属性有哪些是很重要的，尽管在本书剩下的部分中，我们仅关注基石安全特性（CIA）。</p>
+<p><img alt="表格1.1" src="pic/t1-1.png" /></p>
+<p>我们对安全属性和特性进行了非常广泛的定义，其中还包括隐私和匿名等属性，这些属性通常与安全性分开列出。
+请注意，某些安全属性彼此矛盾。例如，匿名和身份验证可能相互矛盾。
+请注意，匿名对攻击者来说也非常有利。</p>
+<p>虽然“机密性”和“隐私”这两个术语在文献中有时可以互换使用，但我们强烈建议对它们进行如下区分：
+机密性是保护秘密或敏感信息的义务，而隐私是决定如何分发或重新分发个人信息的权利。</p>
+<h3 id="trustworthy-versus-trusted">TRUSTWORTHY VERSUS TRUSTED 可信的与信任的</h3>
+<p>理想情况下，<strong>安全计算机系统</strong>至少提供机密性、完整性和可用性这三个基本安全属性。
+然而，这通常既不可能也没有必要，在许多情况下，提供这些属性的不同子集（也有可能是超集）可能就足够了。
+我们将在本章后面和整本书中进一步讨论这一点。</p>
+<p>一个<strong>可信计算机</strong>(trustworthy computer)是指<strong>被设计成</strong>可靠的并提供安全特性，完成它被设计的工作并且不会产生对它或者别的系统的有害影响。
+相反，过去人们提出的都是<strong>信任的计算机</strong>(trusted computer)，即人们依赖它去实现安全策略。
+如果一个信任的计算机（或者信任的人）违背了信任，那么执行安全策略的所有努力都将失败。
+信任的计算机未必可信，反之亦然。</p>
+<p>例如，将军是受信任的，但是一个腐败的向敌方泄露军事机密的将军是不可信的。
+因此，以来受信任的将军的安全策略可能会被突破。
+相似地，一个计算机系统有时被我们盲目信任，用于保存某些机密信息，但是它可能从设计之初就不是可信的。
+不幸的是，这种就是我们平时大量使用的商品计算机的常见情况。</p>
+<p>对于计算机系统，术语<strong>信任计算基</strong>（trusted computing base, TCB）指一组硬件和软件组件，如果违反该组件，则意味着安全策略可能无法执行。
+不幸的是，目前没有一种 COTS（Commodity Off-The-Shelf，现成商品）计算机系统能够实现可靠的可信计算基础。
+事实上，COTS 计算机的设计并不值得信赖。
+安全性通常是事后才添加的，这会导致性能、成本、上市时间和易用性下降。</p>
+<p>为了未来的 COTS 计算机可以变得可信，我们需要计算机架构师理解安全问题。
+今天，安全问题在美国高校的软硬件课程中都不被涉及。
+去弥补这个事实是十分重要的，即使得计算机架构师、系统设计者和学生理解、研究、设计、发展可信计算机系统。</p>
+<p>因为确保巨大且复杂的软硬件系统饭圈不受bugs和安全漏洞威胁是困难甚至不可能的，我们需要使得信任计算基(TCB)尽可能小，以最大化它正确且不受安全漏洞威胁的可能性。
+所谓对于一个实体（如TCB）的<strong>攻击界面</strong>(attack surface)是指攻击者可以经由而渗透进实体的部分；具体渗透的手段和方法我们称之为<strong>攻击矢量</strong>(attack vector)。
+更小的TCB意味着攻击者可以用于渗透进入系统、破坏其完整性或偷窃其秘密的攻击界面和攻击矢量更小。
+此外，较小的信任软件组件比大型、复杂的软件组件更适合形式化验证技术。</p>
+<h2 id="threats-and-attacks">THREATS AND ATTACKS 威胁和攻击</h2>
+<p>所谓<strong>安全缺口</strong>(security breach)是指一个违背安全特性的事件。
+(A <em>security breach</em> is an event that violates a security property.)
+例如，它可以是机密性、完整性或可用性的缺口。
+一个安全缺口可能是故意引起的，也可能是无意的。</p>
+<p><strong>威胁</strong>(threat)是指任何可以破坏有价值资产或引起安全缺口的行为。
+例如，存在泄露威胁、修改威胁和拒绝服务威胁，它们分别威胁到保护机密性、完整性和可用性的主要安全目标。</p>
+<p><strong>攻击</strong>(attack)是指威胁的特定实例。
+它包括了对于系统、利用的漏洞、攻击的方式和被攻击的资产的细节描述。</p>
+<p><strong>漏洞</strong>(vulnerability)是指系统中的一个弱点，它可以被利用去造成对有价值资产的破坏。
+在一个攻击中，攻击者可能利用一个或多个漏洞。</p>
+<p>表格1.2列出了一些威胁和典型的攻击。
+其中一些攻击从名称上就一目了然，而其他攻击将在后面的章节中详细描述。
+列表和示例旨在说明性，而不是全面性。
+大多数攻击最终都会导致机密性、完整性或可用性的破坏。
+虽然我们不会在这里描述每种攻击，但感兴趣的用户可以通过 Google 搜索轻松找到它们的描述。
+这里的目标只是说明广泛的已发现的攻击。</p>
+<p><img alt="t1-2" src="pic/t1-2.png" /></p>
+<p>为了成功地防御攻击，我们需要了解攻击者的动机及其思考方式。
+”了解你的敌人“是重要的防御策略以及“面向威胁的设计方法”的基础。</p>
+<p>“黑帽黑客”是指为了恶意目的而实施攻击的人，而“白帽黑客”是指像攻击者一样思考、提议甚至执行部分攻击以提醒组织加强防御的人。</p>
+<p><strong>网络攻击者</strong>(cyber attackers)已从为乐趣和名声而发动攻击的黑客，演变为利用网络攻击进行勒索或诈骗的犯罪实体，再演变为财力雄厚、技能精湛的高端网络攻击者。
+这些攻击者可能是试图摧毁电网等关键基础设施的网络恐怖组织，也可能是有能力发动网络战的国家攻击者。
+因此，风险和收益更高，攻击者也更强大。
+此外，攻击已经自动化，因此攻击者不必是专家程序员，也不必非常了解系统即可发起成功的攻击。
+其中一些自动化攻击有时被称为<strong>脚本小子攻击</strong>(script kiddie attacks)。</p>
+<h2 id="countermeasures-and-defenses">COUNTERMEASURES AND DEFENSES 对策和防御</h2>
+<p><strong>对策</strong>(countermeasure)是对攻击的防御。
+该术语体现出在过去安全措施的被动立场：攻击发生后，我们提出对策（理想情况下可以实施）。
+更主动的立场正在不断被重视。
+“威胁与防御”和“攻击与对策”这两个术语经常一起使用。</p>
+<p>防御攻击可分为检测、预防、缓解、恢复和取证防御。
+人们可以尝试检测系统中的漏洞并尝试消除这些漏洞。
+人们可以尝试预防攻击发生。
+攻击开始后，人们可以尝试缓解攻击的影响。
+成功攻击后，人们可以尝试尽快、尽可能彻底地从攻击中恢复，并且通常对攻击做出响应。
+最后，设计机制来收集取证证据并正确归因攻击是很有用的。</p>
+<h2 id="threat-model">THREAT MODEL 威胁模型</h2>
+<p>不同的应用场景需要不同种类和层级的安全性。
+针对不同层级的威胁，有许多不一样的资产需要被保护。
+例如，防止不被允许的视频下载显然和对核武器机密的保护是不一样的。
+破坏造成的风险越大、资产的价值越高，我们就需要更高程度的安全保护。
+由于涉及一个适用于所有场景的安全计算机是不可能也不必要的，阐明设计和评价一个计算机系统时候的威胁模型是很重要的。</p>
+<p><strong>威胁模型</strong>(threat model)阐明了哪些种类的的威胁系统会防御，而哪些不在考量范围。
+例如，在特定的应用场景中，防止机密性缺口是最重要的，而可用性就不太被考虑。
+这意味着哪怕一个拒绝服务攻击发生了，攻击者也无法得到任何敏感信息。
+例如，机密信息可以被攻击者无法获取的密钥加密，或者密钥会在攻击发生后立即被销毁。
+这被称为机密性保护的<strong>故障安全</strong>(fail-safe)策略。</p>
+<p>威胁模型还会指定是否只考虑对运行系统的攻击，或者系统是否还考虑在系统开发过程中的攻击，例如由系统程序员或硬件设计师进行的攻击。
+这些分别称为<strong>运行攻击</strong>(operational attacks)和<strong>开发攻击</strong>(development attacks)。
+开发攻击是一类<strong>内部攻击</strong>(insider attacks)，通常更难防范，因为设计者（内部人员）实际上是在系统中构建后门或信息泄露机制。
+系统的实现将根据设计<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>进行验证，从而验证其正确性，因为后门漏洞是设计的一部分。</p>
+<p>威胁同样也有<strong>主动</strong>(active)和<strong>被动</strong>(passive)的区别。
+例如，监听(eavesdropping)公用互联网或无线网是一种被动的攻击，而修改该网络上被发送的信息是一种主动的攻击。</p>
+<p>威胁模型可以只关心软件攻击，或者也关心硬件攻击。
+强大的系统软件，诸如控制了系统资源的操作系统和虚拟机监视器，同样可以是违背协议的（被攻击或本身腐败）。
+因此威胁模型同样可以包括恶意的或者违背协议的操作系统或虚拟机监视器。</p>
+<p>有些攻击是已知的，并且已经发展起了用于检测这种攻击的<strong>攻击签名</strong>(attack signatures)。
+攻击签名是一个或一类攻击的特征。
+例如，病毒扫描程序利用已知的病毒签名的数据库来检测计算机中的病毒。
+还有一些攻击是以前从未见过的，被称为<strong>零日攻击</strong>(zero-day attacks)。
+威胁模型可以指定零日攻击是否是目标或不被考虑。</p>
+<p>威胁模型应该清楚地阐明对于系统的假设，系统的用户以及攻击者的能力。
+威胁模型应该阐明哪些种类的威胁被考虑，哪些不被考虑。
+威胁模型不需要描述其防御的攻击的细节。</p>
+<h2 id="security-architecture-design-methodology">SECURITY ARCHITECTURE DESIGN METHODOLOGY 安全架构设计方法</h2>
+<p><img alt="f1-1" src="pic/f1-1.png" /></p>
+<p>图1.1展示了我们推荐的设计安全计算机系统的方法，尤其是那些涉及到新的硬件安全方法或特性的系统。
+它展示了我们如何将面向威胁的设计方法融入计算机设计流程。</p>
+<p>首先，描述你正在设计的使用场景。
+然后，应该清楚简洁地定义安全问题（最好只用一句话）。
+接下来，应该定义威胁模型，以阐明解决方案将解决哪些威胁，以及未考虑的威胁及其原因。
+通常，在特定的使用模型中，某些威胁不太可能发生或优先级比其他威胁低得多。
+然后，应该定义适合使用场景的安全策略（或一系列策略），并在正确执行适当的策略时防御威胁模型中的威胁。
+（我们将在后面的章节中讨论安全策略。）</p>
+<p>解决方案可能涉及增强现有架构或创建新架构以执行所需的安全策略，从而防御威胁模型中考虑的威胁。
+安全社区将这些称为<strong>安全机制</strong>(security mechanisms)。
+在架构社区中，我们称它们为安全架构功能。</p>
+<p>安全策略规定了保护所需安全特性、提供所需安全特性和防御攻击的规则，而安全机制则旨在执行这些安全策略。
+如果定义了错误的安全策略，那么再多的安全机制也无法防止安全漏洞。
+同样，即使定义了最全面、最正确的安全策略，如果没有可以执行该策略的安全机制，那么这也没有用。
+安全机制可以在计算机或分布式计算机系统中的任何软件、硬件或网络层中实现。</p>
+<p>理想情况下，这些安全机制最好是计算机初始设计的一部分。
+通常，它们也可以集成到现有设计中。然后获得整个架构。
+除了安全目标之外，还必须确保性能、功耗、面积、成本和可用性目标也得到满足。
+否则，用户将选择性能更高、更节能（节省电池）或成本更低的计算机，而不是更安全的计算机。
+因此，在设计可信计算机时，我建议<strong>安全架构</strong>(security-aware architecture)的目标（我的学生有时称之为 Lee's mantra）是：
+    <strong>“实现安全性，而不违反性能，</strong>
+    <strong>功耗，成本和可用性。”</strong>
+    <em>(Security without compromising performance,</em>
+    <em>power consumption, cost and usability.)</em></p>
+<p>虽然除了特定情况外，这通常是无法实现的，但我们希望富有创造力的计算机架构社区提出非常巧妙的解决方案来满足这一目标。</p>
+<p>新架构提供的安全特性应该在设计时被仔细地验证。
+这是设计验证的一个新方面，需要为此开发新的工具和方法。
+为安全验证而开发的形式化验证技术目前无法扩展到复杂的软硬件系统。
+事实上，大多数工具适用于纯软件设计或纯硬件设计，但不适用于软硬件架构。</p>
+<p>设计还必须评估其性能、功耗、面积、成本、可用性和可部署性。
+如果新的安全机制严重降低了高性能、低功耗等市场要求，则应迭代设计（如图 2.1 所示）。<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+<p>许多安全系统之所以没有成功，是因为它们牺牲了性能、长电池寿命和易用性等市场驱动因素。</p>
+<p>新的安全计算机架构如何影响现有软件程序和软硬件生态系统的使用，也将影响其部署和使用的简易性。</p>
+<p>我们将<strong>安全验证</strong>(security varification)设定为在设计时完成，而安全评估通常在成品或系统上完成。
+好的的安全规定要求，安全验证或评估不应由设计团队完成。
+为了让富有创造力的人类攻击者对系统施加压力，通常使用一种称为“红队、黑队”(red team, black team)测试的策略。
+这让一组攻击者与一组系统防御者对立起来。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>我们更喜欢将访问控制定义为由认证和授权两个部分组成，而一些安全专家则将访问控制和授权视为同义词。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>例如，硬件芯片设计成为验证芯片不同制造级别的黄金网表。(For example, a hardware chip design becomes the golden netlist for verifying different levels of fabrication of the chip.)&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>译者注：应为图1.1。&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Yuchen Alex Fan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.github.com/fanyc22" target="_blank" rel="noopener" title="GitHub Repository" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
