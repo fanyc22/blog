@@ -45,4 +45,4 @@ tags:
 
 ## rmk
 
-本文其实挺 trivial 的。但是文中提到的一些应用可以参考。
+本文其实挺 trivial 的。但是文中提到的一些applications和related works可以参考。
