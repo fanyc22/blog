@@ -10,7 +10,7 @@ tags:
 
 # Securing Time in Untrusted Operating Systems with TimeSeal
 
-可能会做一个相关的项目，读了这篇文章。这篇文章主要关注可信细粒度时间。
+这篇RTSS‘2019文章主要关注抗delay attack和scheduling attack可信细粒度时间。
 
 <!-- more -->
 
