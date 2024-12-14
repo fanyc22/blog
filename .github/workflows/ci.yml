@@ -2,7 +2,7 @@ name: ci
 on:
   push:
     branches:
-      - master
+      # - master
       - main
 permissions:
   contents: write
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-        fetch-depth: 0 # for git history
+          fetch-depth: 0 # for git history
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
@@ -28,5 +28,5 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs mkdocs-material mkdocs-rss-plugin mkdocs-glightbox mkdocs-git-revision-date-localized-plugin mkdocs-macros-plugin cairosvg
-      - run: cd docs/blog && make && cd ../..
+      # - run: cd docs/blog && make && cd ../..
       - run: mkdocs gh-deploy --force
