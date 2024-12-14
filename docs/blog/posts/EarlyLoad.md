@@ -23,6 +23,8 @@ tags:
 Patent 实在是不好读。
 十分啰嗦。
 
+<!-- more -->
+
 ## Processor Core
 
 ![](./EarlyLoad_pic/patent-002.png)
