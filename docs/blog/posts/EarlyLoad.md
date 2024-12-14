@@ -68,6 +68,7 @@ Securty tag 可能包括ASID、VMID。
 这里的 intermittent strided load 很有意思。
 由于提高 LT 中置信度导致在 PT 中分配 entry 的 load 和下一个周期被预测的 load 中有多个指令正在流水级，故可能会导致 stride 预测错误。
 这里采用两种方式解决：
+
 1. 认为第一个在 PT 中查找到的是 probing instr.，阻塞后面的查询，直到 probing tnstr. 被处理结束，确定 intermittent 的数量。
 2. 跟踪记录流水级中 instr. 的 PC，直接确定 intermittent 的数量。
 
@@ -116,9 +117,10 @@ PT enrty 清除的阈值可能会比 LT entry 清除的阈值高。
 图例疑似有错，AR6 应该是 A。
 
 这里假定：
-- store instr. 在所有 non-pred. load instr. 之前均完成。
-- pred. load 在 store1 和 store2 之间执行。
-- 对于 load2 的预测是正确的。
+
+* store instr. 在所有 non-pred. load instr. 之前均完成。
+* pred. load 在 store1 和 store2 之间执行。
+* 对于 load2 的预测是正确的。
 
 倘若不进行预测，这里的 load2 会在 load1 之后执行，PR2 的值是 AR5 的值。
 但是进行预测后，PR2 的值是 AR4 的值。这造成逻辑上应该先执行的指令 load1 看到的内存状态比 逻辑上应该后执行的指令 load2 看到的内存状态要在时序上靠后。且由于预测地址没有错误，Core1 无法发现该错误。
