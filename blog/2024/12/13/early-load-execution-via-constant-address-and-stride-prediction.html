@@ -10,13 +10,11 @@
         <meta name="author" content="Yuchen Alex Fan">
       
       
-        <link rel="canonical" href="https://www.yu-chen.fan/blog/2024/11/27/securing-time-in-untrusted-operating-systems-with-timeseal.html">
+        <link rel="canonical" href="https://www.yu-chen.fan/blog/2024/12/13/early-load-execution-via-constant-address-and-stride-prediction.html">
       
       
-        <link rel="prev" href="../01/ubuntu-2404-%E5%AE%89%E8%A3%85-ads2020update2-%E7%A0%B4%E8%A7%A3%E7%89%88.html">
+        <link rel="prev" href="../../11/27/securing-time-in-untrusted-operating-systems-with-timeseal.html">
       
-      
-        <link rel="next" href="../../12/13/early-load-execution-via-constant-address-and-stride-prediction.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>Securing Time in Untrusted Operating Systems with TimeSeal - Alex's Note</title>
+        <title>Early Load Execution via Constant Address and Stride Prediction - Alex's Note</title>
       
     
     
@@ -73,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#securing-time-in-untrusted-operating-systems-with-timeseal" class="md-skip">
+        <a href="#early-load-execution-via-constant-address-and-stride-prediction" class="md-skip">
           跳转至
         </a>
       
@@ -109,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Securing Time in Untrusted Operating Systems with TimeSeal
+              Early Load Execution via Constant Address and Stride Prediction
             
           </span>
         </div>
@@ -807,60 +805,108 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#abstract" class="md-nav__link">
     <span class="md-ellipsis">
-      背景
+      Abstract
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#processor-core" class="md-nav__link">
     <span class="md-ellipsis">
-      设计
+      Processor Core
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="设计">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fine-grained-time" class="md-nav__link">
-    <span class="md-ellipsis">
-      插值获得 fine-grained time
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scheduling-attack" class="md-nav__link">
-    <span class="md-ellipsis">
-      scheduling attack
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delay-attack" class="md-nav__link">
-    <span class="md-ellipsis">
-      delay attack
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rmk" class="md-nav__link">
+  <a href="#early-load-method" class="md-nav__link">
     <span class="md-ellipsis">
-      rmk
+      Early Load Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-addr-predicting-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Addr. Predicting Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Entry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pt-miss-handling-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      PT Miss Handling Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lt-entry-updating-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      LT Entry Updating Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pt-entry-updating-based-on-lt-entry-updating-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      PT Entry Updating (Based on LT Entry Updating) Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ltpt-resource-saving-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      LT&amp;PT Resource Saving Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lt-entry-invalidating-method-using-consecutive-mismatch-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      LT Entry Invalidating Method Using Consecutive Mismatch Count
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avoiding-discrepancies-in-memory-access-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avoiding Discrepancies in Memory Access Ordering
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soc-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soc &amp; System
     </span>
   </a>
   
@@ -903,7 +949,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-27 00:00:00+00:00" class="md-ellipsis">2024年11月27日</time>
+                        <time datetime="2024-12-13 00:00:00+00:00" class="md-ellipsis">2024年12月13日</time>
                       </div>
                     </li>
                     
@@ -925,7 +971,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 1 分钟阅读时间
+                              需要 3 分钟阅读时间
                             
                           </span>
                         </div>
@@ -945,7 +991,7 @@
         
 
   
-    <a href="https://github.com/fanyc22/blog/edit/main/docs/blog/posts/TimeSeal.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/fanyc22/blog/edit/main/docs/blog/posts/EarlyLoad.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -953,30 +999,79 @@
   
 
 
-<h1 id="securing-time-in-untrusted-operating-systems-with-timeseal">Securing Time in Untrusted Operating Systems with TimeSeal</h1>
-<p>这篇RTSS‘2019文章主要关注抗delay attack和scheduling attack可信细粒度时间。</p>
+<h1 id="early-load-execution-via-constant-address-and-stride-prediction">Early Load Execution via Constant Address and Stride Prediction</h1>
+<h2 id="abstract">Abstract</h2>
+<p>一种有效减少加载操作延迟的系统和方法。
+在各种实施例中，处理器的逻辑在获取指令之后访问预测表。
+对于预测表命中，逻辑使用从预测表中检索到的预测地址执行加载指令。
+对于预测表未命中，当逻辑确定加载指令的地址并命中学习表时，且当学习表中存储的地址与确定的地址匹配时，逻辑更新置信度指示以指示更高的置信度。
+当逻辑确定存储在学习表的给定表条目中的置信度指示达到阈值时，逻辑在预测表中分配存储在给定条目中的信息。
+因此，在下一次查找预测表时，预测地址可用。</p>
+<p>Patent 实在是不好读。
+十分啰嗦。</p>
 <!-- more -->
 
-<h2 id="_1">背景</h2>
-<p>对 time stack 的攻击文章归结为三个部分：
-对硬件寄存器的特权写，对时间信息传输过程的延迟，安全的 timekeeping software。</p>
-<p>文章认为 SGX 提供的时钟是 trusted 的，但是 coarse-grained。
-且文章提出的威胁模型认为 compromised OS 是一个 stealthy attacker。
-因此不会打乱时间包的顺序或者丢弃时间包（这里其实比较弱）。
-此外，操作系统具有恶意调度的能力（但很快我们会看到由于 stealthy 的原因，这个能力也是有限的）。</p>
-<h2 id="_2">设计</h2>
-<h3 id="fine-grained-time">插值获得 fine-grained time</h3>
-<p>思路很简单，用 一个软件循环递增一个 counter，然后用上一个周期的 counter 增加量来估计当前的时间。
-这里会出现由于OS压力的问题导致 counter 增加量不稳定的问题，进而导致不单调的问题。
-文章采用了在平台等待的方式，等待的counter增量是由超出量估计得到。</p>
-<h3 id="scheduling-attack">scheduling attack</h3>
-<p>这里采用多个 thread 来计数。
-为了所谓的 stealthy，这里居然假定在 1 sec 内阻塞所有计时线程是不允许的。</p>
-<h3 id="delay-attack">delay attack</h3>
-<p>这里采用阈值加误差估计的方式实现。</p>
-<p><img alt="TimeSeal" src="../../../TimeSeal_pic/1.png" /></p>
-<h2 id="rmk">rmk</h2>
-<p>本文其实挺 trivial 的。但是文中提到的一些applications和related works可以参考。</p>
+<h2 id="processor-core">Processor Core</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-002.png" /></p>
+<p>注意这里利用了 PC history akey 去做查找。且查找可能在 decoder 前/同时/后。</p>
+<p>Map Unit 用于给译码结果或者 uop 分配物理寄存器。</p>
+<p>STL 会被认为 mispredict 这是用于防止从 cache 读造成的 RAW 错误。</p>
+<h2 id="early-load-method">Early Load Method</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-003.png" /></p>
+<p>intsr. 会被拆分为两条指令 pred. instr. 和 non-pred. instr.。</p>
+<p>注意到这里强调 predicted load 需要在 cache 中。
+这很合理，因为如果不在，predicted 和 non-predicted load 之间的延迟差别不大。</p>
+<p>但是文中也说也可能会进一步向更低的 cache 查找。</p>
+<h2 id="load-addr-predicting-method">Load Addr. Predicting Method</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-004.png" /></p>
+<p>注意到这里强调了一个 arbitration logic，这意味着进程信息等许多因素决定了 load 是否会被预测。
+因素的权重被一个 programable reg. 保存。</p>
+<p>在这个方法中，被执行的 pred. load 和 cache miss 的 pred. load 会被放到 retire queue。
+基于 PA 对 retire queue 中的 load 进行检查，更新 learning table。</p>
+<p>不是所有的 retire queue 中的 instr. 都会被学习。
+例如总是预测错误的可能会被记录到 filter，后续不再学习之。</p>
+<h2 id="table-entry">Table Entry</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-005.png" /></p>
+<p>Securty tag 可能包括ASID、VMID。</p>
+<p>这里的 intermittent strided load 很有意思。
+由于提高 LT 中置信度导致在 PT 中分配 entry 的 load 和下一个周期被预测的 load 中有多个指令正在流水级，故可能会导致 stride 预测错误。
+这里采用两种方式解决：
+1. 认为第一个在 PT 中查找到的是 probing instr.，阻塞后面的查询，直到 probing tnstr. 被处理结束，确定 intermittent 的数量。
+2. 跟踪记录流水级中 instr. 的 PC，直接确定 intermittent 的数量。</p>
+<h2 id="pt-miss-handling-method">PT Miss Handling Method</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-006.png" /></p>
+<p>会在 accessing LT 之前首先做 STLF。
+这里提到 STLF 也会有 prediction。</p>
+<h2 id="lt-entry-updating-method">LT Entry Updating Method</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-007.png" /></p>
+<p>注意到这里有种实现是更新 base addr. 为原本的 base addr. + stride。</p>
+<h2 id="pt-entry-updating-based-on-lt-entry-updating-method">PT Entry Updating (Based on LT Entry Updating) Method</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-008.png" /></p>
+<p>LT entry 中的置信度会决定是否添加/清除 PT entry。</p>
+<p>PT enrty 清除的阈值可能会比 LT entry 清除的阈值高。
+也有可能 LT entry 不主动清除，只会被 evict。</p>
+<h2 id="ltpt-resource-saving-method">LT&amp;PT Resource Saving Method</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-009.png" /></p>
+<p>这里很有趣，如果衡量到某条 pred. instr. 和其 non-pred. instr. 的延迟差别不大，那么就在后续不再预测该条 instr.。</p>
+<p>文中给出了延迟不同的定义。</p>
+<p><strong>具体什么因素会影响单个 pred. instr. 和 non-pred. instr. 的延迟差别，文中没有给出。</strong></p>
+<h2 id="lt-entry-invalidating-method-using-consecutive-mismatch-count">LT Entry Invalidating Method Using Consecutive Mismatch Count</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-010.png" /></p>
+<p>这是一种方法，不同于上述的基于置信度的 LT entry 清除方法。</p>
+<h2 id="avoiding-discrepancies-in-memory-access-ordering">Avoiding Discrepancies in Memory Access Ordering</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-011.png" /></p>
+<p>图例疑似有错，AR6 应该是 A。</p>
+<p>这里假定：
+- store instr. 在所有 non-pred. load instr. 之前均完成。
+- pred. load 在 store1 和 store2 之间执行。
+- 对于 load2 的预测是正确的。</p>
+<p>倘若不进行预测，这里的 load2 会在 load1 之后执行，PR2 的值是 AR5 的值。
+但是进行预测后，PR2 的值是 AR4 的值。这造成逻辑上应该先执行的指令 load1 看到的内存状态比 逻辑上应该后执行的指令 load2 看到的内存状态要在时序上靠后。且由于预测地址没有错误，Core1 无法发现该错误。</p>
+<p>为了避免这种访存顺序不一致，不允许存在操作数依赖于先前的 load instr. 的 load instr. 被预测。</p>
+<p><strong>实际上我并不是很理解这一部分。不存在操作数依赖的 load instr. 如果被提前执行了，似乎看到的内存时序和逻辑上的执行时序也是不一致的。如果 AR6 就是 A，那么检查 load2 是否预测正确的时候应该就是不正确，和文中描述也不符合。</strong></p>
+<h2 id="soc-system">Soc &amp; System</h2>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-012.png" /></p>
+<p><img alt="" src="../../../EarlyLoad_pic/patent-013.png" /></p>
 
 
 
