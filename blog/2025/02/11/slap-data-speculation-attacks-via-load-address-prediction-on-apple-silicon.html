@@ -10,22 +10,26 @@
         <meta name="author" content="Yuchen Alex Fan">
       
       
+        <link rel="canonical" href="https://www.yu-chen.fan/blog/2025/02/11/slap-data-speculation-attacks-via-load-address-prediction-on-apple-silicon.html">
+      
+      
+        <link rel="prev" href="../../../2024/12/13/early-load-execution-via-constant-address-and-stride-prediction.html">
       
       
       
-        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="/feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="/feed_rss_updated.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
-        <title>Alex's Note</title>
+        <title>SLAP: Data Speculation Attacks via Load Address Prediction on Apple Silicon - Alex's Note</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8608ea7d.min.css">
       
       
 
@@ -48,7 +52,7 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,6 +70,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#slap-data-speculation-attacks-via-load-address-prediction-on-apple-silicon" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -78,7 +87,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="/index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+    <a href="../../../../index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              SLAP: Data Speculation Attacks via Load Address Prediction on Apple Silicon
             
           </span>
         </div>
@@ -180,7 +189,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/index.html" class="md-tabs__link">
+      <a href="../../../../index.html" class="md-tabs__link">
         
   
     
@@ -197,7 +206,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/about/index.html" class="md-tabs__link">
+      <a href="../../../../about/index.html" class="md-tabs__link">
         
   
     
@@ -212,11 +221,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/blog/index.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../index.html" class="md-tabs__link">
           
   
     
@@ -236,7 +247,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/SBCA/translator.html" class="md-tabs__link">
+        <a href="../../../../SBCA/translator.html" class="md-tabs__link">
           
   
     
@@ -266,7 +277,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -277,7 +290,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+    <a href="../../../../index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -307,7 +320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/index.html" class="md-nav__link">
+      <a href="../../../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -328,7 +341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/about/index.html" class="md-nav__link">
+      <a href="../../../../about/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -346,6 +359,8 @@
       
   
   
+    
+  
   
   
     
@@ -362,23 +377,24 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/blog/index.html" class="md-nav__link ">
+            <a href="../../../index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -390,13 +406,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Blog
@@ -423,10 +439,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -435,7 +454,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -463,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/archive/2025.html" class="md-nav__link">
+      <a href="../../../archive/2025.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -487,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/archive/2024.html" class="md-nav__link">
+      <a href="../../../archive/2024.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -528,10 +547,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -540,7 +562,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -568,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/category/paper.html" class="md-nav__link">
+      <a href="../../../category/paper.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -592,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/category/tools.html" class="md-nav__link">
+      <a href="../../../category/tools.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -684,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/translator.html" class="md-nav__link">
+      <a href="../../../../SBCA/translator.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -706,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/ABSTRACT.html" class="md-nav__link">
+      <a href="../../../../SBCA/ABSTRACT.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -728,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/Preface.html" class="md-nav__link">
+      <a href="../../../../SBCA/Preface.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -750,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/C1.html" class="md-nav__link">
+      <a href="../../../../SBCA/C1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -772,7 +794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/C2.html" class="md-nav__link">
+      <a href="../../../../SBCA/C2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -802,6 +824,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -811,6 +835,199 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abstract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      贡献
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reverse-engineering-the-lap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse Engineering the LAP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse Engineering the LAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#observing-load-data-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observing Load Data Speculation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirming-load-address-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confirming Load Address Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirming-speculative-execution-via-lap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confirming Speculative Execution via LAP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-conditions-for-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial Conditions for Speculation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temporal-conditions-for-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temporal Conditions for Speculation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirming-instruction-address-tagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Confirming Instruction Address Tagging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weaponizing-the-lap-for-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weaponizing the LAP for Attacks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Weaponizing the LAP for Attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spectre-lap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spectre-LAP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验复现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验复现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      打用于获取精确时间打 Kernel 补丁
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-dc-civac-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable-dc-civac 允许对 cache 的操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slap" class="md-nav__link">
+    <span class="md-ellipsis">
+      slap 复现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="slap 复现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw Loop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -819,14 +1036,190 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-  <h1>404 - Not found</h1>
-
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
             </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-02-11 00:00:00+00:00" class="md-ellipsis">2025年2月11日</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            分类于
+                            
+                              <a href="../../../category/paper.html">paper</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 2 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
           
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+    <a href="https://github.com/fanyc22/blog/edit/main/docs/blog/posts/SLAP.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="slap-data-speculation-attacks-via-load-address-prediction-on-apple-silicon">SLAP: Data Speculation Attacks via Load Address Prediction on Apple Silicon</h1>
+<h2 id="abstract">Abstract</h2>
+<p><strong>利用 Apple 的 Early Load 机制的攻击被做出来了。</strong></p>
+<blockquote>
+<p>自 2018 年 Spectre 首次披露以来，由于难以在硬件中完全缓解推测执行攻击，过去六年中出现了几种新的变体和攻击面。
+大多数衍生都建立在原始 Spectre 攻击的关键洞察之上，即 CPU 可以在尝试缓解控制冲突（例如条件或间接分支和返回语句）时暂时执行错误的控制流并通过侧信道跟踪泄露机密。</p>
+<p>本文中，我们超越了影响（推测的）控制流，并提出了一种新的数据推测原语，它源于旨在缓解数据风险的微架构优化。
+更具体地说，我们表明 Apple CPU 配备了加载地址预测器 (LAP)。
+LAP 监控来自相同加载指令的过去地址，以推测性地加载预测地址，该地址可能会错误地指向静止的秘密（即，从未被 CPU 从架构上读取）。
+一旦检索到秘密，LAP 就会提供一个很大的推测窗口，足以让对手计算秘密，例如通过隐蔽通道泄露秘密。
+我们展示了 LAP 在最近的 Apple CPU（例如 M2、A15 和更新型号）上的存在。
+然后，我们通过展示其读取越界、推测性调用恶意函数、破坏 ASLR 和破坏 Safari 网络浏览器的能力来评估 LAP 对安全性的影响。
+在这里，我们利用 LAP 向远程网络对手披露敏感的跨站点数据（例如来自 Gmail 的收件箱内容）。</p>
+</blockquote>
+<!-- more -->
+
+<h2 id="introduction">Introduction</h2>
+<p>在已有的对于控制流的推测执行以外，还可以有对于数据流的推测执行。
+虽然已经观察到某些形式的此类数据推测，主要是通过数据相关的硬件预取器、存储到加载转发预测或浮点问题，但要完全表征现代 CPU 平台上存在的所有形式的数据推测，还有很多工作要做。</p>
+<p><em>现代 CPU 上是否存在额外的数据推测机制？</em>
+<em>如果有，这种推测的安全隐患是什么？</em></p>
+<h3 id="_1">贡献</h3>
+<h2 id="reverse-engineering-the-lap">Reverse Engineering the LAP</h2>
+<p>文章很巧妙的利用了时间去推测 LAP 的存在。相较于我之前是土通过 Load Bypass 机制以及后续的暂态执行来逆向，这种方法更加直接也更加有效。</p>
+<p>文章首先确认了存在 Load Data Speculation，进一步确认是通过 LAP 实现的。
+在此基础上，确认 LAP 的触发条件以及存在基于 LAP 结果的暂态执行。
+最终讨论处理器对 LAP 的限制，如 address checks and instruction tagging。</p>
+<h3 id="observing-load-data-speculation">Observing Load Data Speculation</h3>
+<p>用 pointer-chasing 构造出一个依赖链，测量 Strding 和 Random 的时间。</p>
+<p><em>首先 dry-run 一次，全部加载到 cache 避免 prefetching 的影响。</em></p>
+<p><strong>为什么会出现drop？</strong></p>
+<h3 id="confirming-load-address-prediction">Confirming Load Address Prediction</h3>
+<p>测量 Striding Address from Random Value 的时间。</p>
+<p>这里对 iPhone 的处理办法很巧妙：</p>
+<blockquote>
+<p>However, A-series CPUs are available only on iOS devices, where we do not have access to CPU cycle counters.
+As such, we develop a portable version of the Random, Striding, and SA+RV experiments by compiling them to WebAssembly.
+We then compile the WebAssembly binary to machine code using WebKit, the engine underlying the Safari web browser.
+Since the timer resolution in WebKit is coarse (1 ms), we fix the number of iterations to one million to amplify the timing difference, while keeping the stride unchanged at 32 bytes.</p>
+</blockquote>
+<h3 id="confirming-speculative-execution-via-lap">Confirming Speculative Execution via LAP</h3>
+<p>误导+FR的方式验证。</p>
+<p>注意到：</p>
+<blockquote>
+<p>For accurate measurements, we require the ability to count cycles and flush cache lines from userspace programs.
+Furthermore, to reduce noise and variation, we require the ability to manually control CPU frequency, isolate CPU cores from being used by operating system processes, and pin programs to the isolated cores.</p>
+</blockquote>
+<h3 id="spatial-conditions-for-speculation">Spatial Conditions for Speculation</h3>
+<p>修改训练序列长度和步长。</p>
+<h3 id="temporal-conditions-for-speculation">Temporal Conditions for Speculation</h3>
+<p>在窗口期插入额外的指令。</p>
+<p>注意到这里提到了如果 LAP 得到的地址不在 cache 中，会不进行推测。
+这和 patent 中的内容是一致的。</p>
+<h3 id="confirming-instruction-address-tagging">Confirming Instruction Address Tagging</h3>
+<p>使用全部的 canonical address bits 作为 tag。</p>
+<h2 id="weaponizing-the-lap-for-attacks">Weaponizing the LAP for Attacks</h2>
+<p>证明遍历链表激活 LAP 可以劫持控制流和数据流。</p>
+<h3 id="spectre-lap">Spectre-LAP</h3>
+<p>由于预测的地址受制于步长 255 bytes，攻击存在一定的困难。
+但是由于预测执行的窗口期很长，我们可以暂态地访问任何地址空间。</p>
+<p>可以实现数据和控制流。</p>
+<h2 id="_2">实验复现</h2>
+<p>尝试在 Mac mini M2 (t8112) , macOS 15.2 (24C101) 上复现实验。
+参考网站 [https://github.com/slap-flop/slap-artifacts]。
+由于 OS 有大版本更新，记录和 README 有所不同的部分。</p>
+<h3 id="kernel">打用于获取精确时间打 Kernel 补丁</h3>
+<ol>
+<li>从 [https://developer.apple.com/download/all/] 下载对应 macOS 版本的 Kernel Debug Kit。</li>
+<li>在 Recovery Mode 下关闭 SIP <code>csrutil disable</code>，并关闭启动盘的所有安全选项。这一步需要先做，不然无法修改启动参数。</li>
+<li>修改启动参数<code>sudo nvram boot-args="-unsafe_kernel_text"</code>，避免启动时 kernel panic。</li>
+<li>其余按照 README 操作。</li>
+</ol>
+<h3 id="enable-dc-civac-cache">enable-dc-civac 允许对 cache 的操作</h3>
+<ol>
+<li>首先修改启动参数<code>sudo nvram boot-args="enable_skstb=1"</code>，允许对<code>kern.sched_thread_bind_cpu</code>的操作。这一步在 README 中没有提到，如果不操作会在运行测试程序时报权限错误。</li>
+<li>其余按照 README 操作。</li>
+</ol>
+<h3 id="slap">slap 复现</h3>
+<h4 id="raw-loop">Raw Loop</h4>
+<p><a href="../../../SLAP/raw_loop.png"></a></p>
+<p>复现成功。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -873,12 +1266,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "/assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
       
-        <script src="/javascripts/katex.js"></script>
+        <script src="../../../../javascripts/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
