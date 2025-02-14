@@ -120,6 +120,6 @@ tags:
 
 #### Raw Loop
 
-[](./SLAP/raw_loop.png)
+![](./SLAP/raw_loop.png)
 
 复现成功。
