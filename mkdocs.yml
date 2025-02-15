@@ -5,6 +5,7 @@ edit_uri: edit/main/docs/
 site_author: Yuchen Alex Fan
 theme:
   name: material
+  custom_dir: overrides
   icon:
     # admonition:
       # <type>: <icon>
