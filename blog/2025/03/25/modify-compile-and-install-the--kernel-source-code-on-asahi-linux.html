@@ -10,24 +10,26 @@
         <meta name="author" content="Yuchen Alex Fan">
       
       
-        <link rel="canonical" href="https://www.yu-chen.fan/SBCA/index.html">
+        <link rel="canonical" href="https://www.yu-chen.fan/blog/2025/03/25/modify-compile-and-install-the--kernel-source-code-on-asahi-linux.html">
+      
+      
+        <link rel="prev" href="../../02/11/slap-data-speculation-attacks-via-load-address-prediction-on-apple-silicon.html">
       
       
       
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
-        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
-      
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
-        <title>Index - Alex's Note</title>
+        <title>(Modify,) Compile and Install the Kernel Source Code on Asahi Linux - Alex's Note</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
       
       
 
@@ -50,7 +52,7 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,6 +70,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#modify-compile-and-install-the-kernel-source-code-on-asahi-linux" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -80,7 +87,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+    <a href="../../../../index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Index
+              (Modify,) Compile and Install the Kernel Source Code on Asahi Linux
             
           </span>
         </div>
@@ -182,7 +189,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../index.html" class="md-tabs__link">
+      <a href="../../../../index.html" class="md-tabs__link">
         
   
     
@@ -199,7 +206,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../about/index.html" class="md-tabs__link">
+      <a href="../../../../about/index.html" class="md-tabs__link">
         
   
     
@@ -214,11 +221,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../blog/index.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../index.html" class="md-tabs__link">
           
   
     
@@ -238,7 +247,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="translator.html" class="md-tabs__link">
+        <a href="../../../../SBCA/translator.html" class="md-tabs__link">
           
   
     
@@ -268,7 +277,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -279,7 +290,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+    <a href="../../../../index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -309,7 +320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="../../../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -330,7 +341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/index.html" class="md-nav__link">
+      <a href="../../../../about/index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -348,6 +359,8 @@
       
   
   
+    
+  
   
   
     
@@ -364,23 +377,24 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../blog/index.html" class="md-nav__link ">
+            <a href="../../../index.html" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -392,13 +406,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Blog
@@ -425,10 +439,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -437,7 +454,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -465,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/archive/2025.html" class="md-nav__link">
+      <a href="../../../archive/2025.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -489,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/archive/2024.html" class="md-nav__link">
+      <a href="../../../archive/2024.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -530,10 +547,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -542,7 +562,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -570,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/category/paper.html" class="md-nav__link">
+      <a href="../../../category/paper.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -594,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/category/tools.html" class="md-nav__link">
+      <a href="../../../category/tools.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -686,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="translator.html" class="md-nav__link">
+      <a href="../../../../SBCA/translator.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -708,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ABSTRACT.html" class="md-nav__link">
+      <a href="../../../../SBCA/ABSTRACT.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Preface.html" class="md-nav__link">
+      <a href="../../../../SBCA/Preface.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -752,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="C1.html" class="md-nav__link">
+      <a href="../../../../SBCA/C1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -774,7 +794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="C2.html" class="md-nav__link">
+      <a href="../../../../SBCA/C2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -804,6 +824,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -813,6 +835,61 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-and-complie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config and Complie
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deal-with-dtb-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deal with DTB problems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-m1n1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update m1n1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#done-and-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Done and reboot
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -821,14 +898,81 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-03-25 00:00:00+00:00" class="md-ellipsis">2025年3月25日</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            分类于
+                            
+                              <a href="../../../category/tools.html">tools</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 2 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
 
 
   
-    <a href="https://github.com/fanyc22/blog/edit/main/docs/SBCA/index.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/fanyc22/blog/edit/main/docs/blog/posts/KernelAsahi.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -836,7 +980,79 @@
   
 
 
-  <h1>Index</h1>
+<h1 id="modify-compile-and-install-the-kernel-source-code-on-asahi-linux">(Modify,) Compile and Install the  Kernel Source Code on Asahi Linux</h1>
+<p>This is the first tutorial of building and install the kernel from source on Asahi Linux since they moved to the Fedora kernel. <strong>This blog is not wriiten by me, but by <a href="https://blog.clf3.org">Minghong Sun</a>.</strong></p>
+<!-- more -->
+
+<h2 id="preparation">Preparation</h2>
+<ol>
+<li><strong>Install Asahi Linux (if not already installed):</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://alx.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<ol>
+<li><strong>Download the kernel source:</strong></li>
+</ol>
+<p>Download the appropriate version from the <a href="https://gitlab.com/fedora-asahi/kernel-asahi">Fedora Asahi Repo</a> and extract it:</p>
+<div class="highlight"><pre><span></span><code>tar<span class="w"> </span>-xf<span class="w"> </span>kernel-asahi-kernel-6.12.1-404.asahi.tar.gz
+<span class="nb">cd</span><span class="w"> </span>kernel-asahi-kernel-6.12.1-404.asahi/
+</code></pre></div>
+<ol>
+<li><strong>Install the building essentials:</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>make<span class="w"> </span>automake<span class="w"> </span>gcc<span class="w"> </span>gcc-c++<span class="w"> </span>openssl-devel<span class="w"> </span>ncurses-devel<span class="w"> </span>flex<span class="w"> </span>bison
+</code></pre></div>
+<h2 id="config-and-complie">Config and Complie</h2>
+<ol>
+<li><strong>Copy the current kernel configuration:</strong></li>
+</ol>
+<p>Copy your existing kernel configuration as a starting point and then open it with the menuconfig interface to adjust settings if needed.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>-v<span class="w"> </span>/boot/config-<span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span><span class="w"> </span>.config
+make<span class="w"> </span>menuconfig
+</code></pre></div>
+<ol>
+<li><strong>Compile the kernel:</strong></li>
+</ol>
+<p>Use the <code>-j</code> flag (adjust the number according to your CPU cores) for faster compilation:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-j<span class="w"> </span><span class="m">24</span>
+</code></pre></div>
+<ol>
+<li><strong>Install the modules, device trees, vdso, and kernel:</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span>modules_install<span class="w"> </span>dtbs_install<span class="w"> </span>vdso_install<span class="w"> </span>install
+</code></pre></div>
+<pre><code>But we are not done now, if you reboot immediatly, you'll **BRICK** the whole system.
+</code></pre>
+<h2 id="deal-with-dtb-problems">Deal with DTB problems</h2>
+<ol>
+<li>
+<p><strong>Move the DTB files to the correct location:</strong></p>
+<p>The <code>dtbs_install</code> command installs dtbs in the wrong place, if you go to <code>/boot</code> and run <code>ls -la</code>, you'll see <code>dtb</code> is a symlink to <code>/boot/dtb-$(uname -r)</code>, but it's invalid. That's because our dtb files are installed in <code>/boot/dtbs/$(uname -r)</code>. So what you need to do is move it to the right place:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mv<span class="w"> </span>/boot/dtbs/6.12.1/<span class="w"> </span>/boot/dtb-6.12.1
+</code></pre></div>
+<pre><code>Replace the `6.12.1` with the name of your newly installed kernel.
+</code></pre>
+<ol>
+<li>
+<p><strong>(Optional) Sync DTB files into <code>/lib/modules</code>:</strong></p>
+<p>We also found that in a fresh-installed system, the dtb files are also in <code>/lib/modules/$(uname -r)/dtb/</code>. But <a href="https://asahilinux.org/docs/alt/boot-process-guide/#installation">the Asahi Linux Docs</a> said that it is "nonstandard" and they will "have better tooling for this in the future". So I have no idea whether these files are still necessary, but just in case, we do:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>/lib/modules/6.12.1/dtb
+sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>/boot/dtb-6.12.1/*<span class="w"> </span>/lib/modules/6.12.1/dtb/
+</code></pre></div>
+<h2 id="update-m1n1">Update m1n1</h2>
+<p>Now we have one last thing to do, run:</p>
+<pre><code>sudo update-m1n1
+</code></pre>
+<p><a href="https://asahilinux.org/docs/alt/installing-gentoo/#updating-u-boot-and-m1n1">The Asahi Linux Docs</a> said this is necessary after every kernel upgrade.</p>
+<h2 id="done-and-reboot">Done and reboot</h2>
+<p>Before rebooting, <strong>double-check that you have completed every step</strong>. Skipping any part could result in an unbootable system or boot loops. A critical note: due to issues like the absence of USB keyboard support in GRUB (see <a href="https://github.com/leifliddy/asahi-fedora-builder/issues/3">this issue</a>), recovering from such a scenario can be very challenging.</p>
+<p>When you’re certain that everything is in place, you can safely reboot:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>reboot
+</code></pre></div>
 
 
 
@@ -844,17 +1060,20 @@
 
 
 
+  
+  
 
 
 
 
+  
 
 
 
-                
-              </article>
-            </div>
-          
+      
+    </article>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -901,12 +1120,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
-        <script src="../javascripts/katex.js"></script>
+        <script src="../../../../javascripts/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
