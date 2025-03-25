@@ -11,7 +11,7 @@ tags:
 
 # (Modify,) Compile and Install the  Kernel Source Code on Asahi Linux
 
-This is the first tutorial of building and install the kernel from source on Asahi Linux since they moved to the Fedora kernel. **This blog is not wriiten by me, but by [Minghong Sun](https://blog.clf3.org).**
+This is the first tutorial of building and installing the kernel from source on Asahi Linux since they moved to the Fedora kernel. **This blog is not wriiten by me, but by [Minghong Sun](https://blog.clf3.org).**
 
 <!-- more -->
 
