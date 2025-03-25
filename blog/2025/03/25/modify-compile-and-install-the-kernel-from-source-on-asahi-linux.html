@@ -1051,7 +1051,10 @@ sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>
 <h2 id="done-and-reboot">Done and reboot</h2>
 <p>Before rebooting, <strong>double-check that you have completed every step</strong>. Skipping any part could result in an unbootable system or boot loops. A critical note: due to issues like the absence of USB keyboard support in GRUB (see <a href="https://github.com/leifliddy/asahi-fedora-builder/issues/3">this issue</a>), recovering from such a scenario can be very challenging.</p>
 <p>When you’re certain that everything is in place, you can safely reboot:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>reboot
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>grubby<span class="w"> </span>--info<span class="o">=</span>ALL<span class="w"> </span><span class="c1"># Find the index of the new kernel</span>
+sudo<span class="w"> </span>vim<span class="w"> </span>/etc/default/grub<span class="w"> </span><span class="c1"># Change the default kernel to the new one</span>
+sudo<span class="w"> </span>grub2-mkconfig<span class="w"> </span>-o<span class="w"> </span>/boot/grub2/grub.cfg
+sudo<span class="w"> </span>reboot
 </code></pre></div>
 
 
