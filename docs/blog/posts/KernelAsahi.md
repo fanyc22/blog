@@ -101,5 +101,8 @@ Before rebooting, **double-check that you have completed every step**. Skipping 
 When you’re certain that everything is in place, you can safely reboot:
 
 ```bash
+sudo grubby --info=ALL # Find the index of the new kernel
+sudo vim /etc/default/grub # Change the default kernel to the new one
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo reboot
 ```
