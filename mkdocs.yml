@@ -51,7 +51,8 @@ nav:
     - Preface: SBCA/Preface.md
     - C1 Threat-Based Design: SBCA/C1.md
     - C2 Security Policy Models: SBCA/C2.md
-
+  - Blogroll:
+    - blogroll/index.md
 markdown_extensions:
   - footnotes
   - pymdownx.arithmatex:
