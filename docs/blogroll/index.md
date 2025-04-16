@@ -70,7 +70,7 @@
                <img class="ava" src="https://blog.clf3.org/avatar.webp" />
                <div class="card-header">
                   <div>
-                     <a href="https://blog.clf3.org" target=“_blank”>ClF3's blog</a>
+                     <a href="https://blog.clf3.org" target=“_blank”>至少在这一刻，热爱不问为何！</a>
                   </div>
                   <div class="info">ClF3's blog</div>
                </div>
