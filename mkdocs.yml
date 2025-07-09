@@ -53,6 +53,7 @@ nav:
     - C2 Security Policy Models: SBCA/C2.md
   - On-Chip Networks, Second Edition:
     - 译序: OCN2E/translator.md
+    - Preface: OCN2E/Preface.md
   - Blogroll:
     - blogroll/index.md
 markdown_extensions:
