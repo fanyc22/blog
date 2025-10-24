@@ -10,22 +10,28 @@
         <meta name="author" content="Yuchen Alex Fan">
       
       
+        <link rel="canonical" href="https://www.yu-chen.fan/APHP/C2.html">
       
       
+        <link rel="prev" href="C1.html">
       
-        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="/feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="/feed_rss_updated.xml">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="C3.html">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
-        <title>Alex's Note</title>
+        <title>C2 Instruction Prefetching - Alex's Note</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.84d31ad4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
       
       
 
@@ -48,7 +54,7 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,6 +72,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#2-instruction-prefetching" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -78,7 +89,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="/index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+    <a href="../index.html" title="Alex&#39;s Note" class="md-header__button md-logo" aria-label="Alex's Note" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              C2 Instruction Prefetching
             
           </span>
         </div>
@@ -184,7 +195,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/index.html" class="md-tabs__link">
+      <a href="../index.html" class="md-tabs__link">
         
   
   
@@ -203,7 +214,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/about/index.html" class="md-tabs__link">
+      <a href="../about/index.html" class="md-tabs__link">
         
   
   
@@ -224,7 +235,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/blog/index.html" class="md-tabs__link">
+        <a href="../blog/index.html" class="md-tabs__link">
           
   
   
@@ -242,11 +253,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/APHP/translator.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="translator.html" class="md-tabs__link">
           
   
   
@@ -268,7 +281,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/SBCA/translator.html" class="md-tabs__link">
+        <a href="../SBCA/translator.html" class="md-tabs__link">
           
   
   
@@ -290,7 +303,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/blogroll/index.html" class="md-tabs__link">
+        <a href="../blogroll/index.html" class="md-tabs__link">
           
   
   
@@ -332,7 +345,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
+    <a href="../index.html" title="Alex&#39;s Note" class="md-nav__button md-logo" aria-label="Alex's Note" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -362,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   
@@ -384,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/about/index.html" class="md-nav__link">
+      <a href="../about/index.html" class="md-nav__link">
         
   
   
@@ -435,7 +448,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="/blog/index.html" class="md-nav__link ">
+            <a href="../blog/index.html" class="md-nav__link ">
               
   
   
@@ -523,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/archive/2025.html" class="md-nav__link">
+      <a href="../blog/archive/2025.html" class="md-nav__link">
         
   
   
@@ -548,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/archive/2024.html" class="md-nav__link">
+      <a href="../blog/archive/2024.html" class="md-nav__link">
         
   
   
@@ -632,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/category/paper.html" class="md-nav__link">
+      <a href="../blog/category/paper.html" class="md-nav__link">
         
   
   
@@ -657,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/blog/category/tools.html" class="md-nav__link">
+      <a href="../blog/category/tools.html" class="md-nav__link">
         
   
   
@@ -692,8 +705,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -711,21 +726,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -738,7 +754,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             A Primer on Hardware Prefetching
@@ -752,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/APHP/translator.html" class="md-nav__link">
+      <a href="translator.html" class="md-nav__link">
         
   
   
@@ -775,7 +791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/APHP/C1.html" class="md-nav__link">
+      <a href="C1.html" class="md-nav__link">
         
   
   
@@ -795,10 +811,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/APHP/C2.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    C2 Instruction Prefetching
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="C2.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -809,6 +847,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-next-line-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Next-Line Prefetching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-fetch-directed-prefetching-fdip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Fetch-Directed Prefetching (FDIP)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-discontinuity-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Discontinuity Prefetching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-prescient-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Prescient Fetch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-temporal-instruction-fetch-streaming-tifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Temporal Instruction Fetch Streaming (TIFS)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-ras-directed-instruction-prefetching-rdip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 RAS-Directed Instruction Prefetching (RDIP)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-proactive-instruction-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Proactive Instruction Fetch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8 Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -821,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/APHP/C3.html" class="md-nav__link">
+      <a href="C3.html" class="md-nav__link">
         
   
   
@@ -844,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/APHP/C4.html" class="md-nav__link">
+      <a href="C4.html" class="md-nav__link">
         
   
   
@@ -931,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/translator.html" class="md-nav__link">
+      <a href="../SBCA/translator.html" class="md-nav__link">
         
   
   
@@ -954,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/ABSTRACT.html" class="md-nav__link">
+      <a href="../SBCA/ABSTRACT.html" class="md-nav__link">
         
   
   
@@ -977,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/Preface.html" class="md-nav__link">
+      <a href="../SBCA/Preface.html" class="md-nav__link">
         
   
   
@@ -1000,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/C1.html" class="md-nav__link">
+      <a href="../SBCA/C1.html" class="md-nav__link">
         
   
   
@@ -1023,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/SBCA/C2.html" class="md-nav__link">
+      <a href="../SBCA/C2.html" class="md-nav__link">
         
   
   
@@ -1078,7 +1208,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="/blogroll/index.html" class="md-nav__link ">
+            <a href="../blogroll/index.html" class="md-nav__link ">
               
   
   
@@ -1125,6 +1255,88 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-next-line-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Next-Line Prefetching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-fetch-directed-prefetching-fdip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Fetch-Directed Prefetching (FDIP)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-discontinuity-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Discontinuity Prefetching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-prescient-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Prescient Fetch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-temporal-instruction-fetch-streaming-tifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Temporal Instruction Fetch Streaming (TIFS)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-ras-directed-instruction-prefetching-rdip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 RAS-Directed Instruction Prefetching (RDIP)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-proactive-instruction-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Proactive Instruction Fetch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8 Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1136,8 +1348,122 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+    <a href="https://github.com/fanyc22/blog/edit/main/docs/APHP/C2.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="2-instruction-prefetching">2. Instruction Prefetching</h1>
+<p>指令获取停顿对具有大指令工作负载的性能极为不利；当指令供应速度减慢时，处理器流水线的执行资源（无论多么丰富）将被浪费。尽管桌面和科学计算工作负载通常表现出较小的指令工作集，但传统服务器工作负载和新兴云工作负载的主要指令工作集往往远超上层缓存所能容纳的范围。随着快速软件开发、脚本化编程范式以及软件栈深度不断增加的虚拟化环境的发展趋势，主要指令工作集也在迅速增长。现代硬件指令调度技术，如乱序执行，通常能有效隐藏因数据访问和其他长延迟指令引起的部分或全部停顿。然而，乱序执行通常无法隐藏指令获取延迟。因此，在服务器中，指令停顿往往占整体内存停顿的很大一部分。</p>
+<h2 id="21-next-line-prefetching">2.1 Next-Line Prefetching</h2>
+<p>下一行预取[5]是指令预取的最简单形式，在大多数现代处理器设计中普遍存在。由于代码在内存中按顺序布局在连续的存储器地址上，指令缓存中超过一半的查找通常针对顺序地址。生成顺序地址并获取它们所需的逻辑极少，并且相当容易集成到处理器和缓存层次结构中。</p>
+<h2 id="22-fetch-directed-prefetching-fdip">2.2 Fetch-Directed Prefetching (FDIP)</h2>
+<p>下一行预取器非常高效，但仅有一半的指令查找是顺序的。控制流指令会打破顺序取指并造成间断，因此需要预测未来控制流并进行前瞻。</p>
+<p><img alt="img" src="pic/01.png" /></p>
+<p>尽管FDIP能有效减少指令获取延迟，但其预取前瞻能力存在根本性局限。图2.5量化了分支预测带宽与预取前瞻能力的关系：近半数指令缓存缺失需要连续16次以上正确分支预测（不含内循环分支）才能生成候选预取地址。</p>
+<p><img alt="img" src="pic/02.png" /></p>
+<h2 id="23-discontinuity-prefetching">2.3 Discontinuity Prefetching</h2>
+<p>更严峻的挑战在于获取断点处的预取——即由函数调用、条件分支跳转和陷阱导致的顺序指令获取序列中断。</p>
+<p>针对控制流非连续性存在多种解决方案。错误路径预取[16]是一种通过使用分支预测器但预测相反路径来解决FDIP基础问题的简单方法。尽管效果有限，预测错误路径能够越过数据相关分支进行预取，并且通过后向循环分支的出口可以预取到FDIP无法获取的指令。</p>
+<p>基于分支历史的预取器[17]、基于执行历史的预取器[18]、多流预测器[10]、下一条踪迹预测器[19]以及调用图预取[20]等技术，均通过前序指令作为索引来预测非连续性，其追踪机制独立于分支预测器。基于服务器应用具有深层重复函数调用栈的观察，调用图预取[20]致力于同时预测整个调用栈的走向，而不仅仅是下一个非连续点。</p>
+<p>该方案的最新实例是非连续性预测器[21]（如图2.6所示），其维护了一个取指非连续性映射表，将包含已执行分支的程序计数器映射至分支目标。据传某些商用处理器产品中已有类似实现。当下一行指令预取器在取指单元前方探索时，会使用每个块地址查询非连续性表，若匹配成功，则除了顺序路径外还会预取非连续路径。虽然该方案简单且硬件需求极低，但非连续性预测器仅能跨越单次取指非连续性；若通过递归查找探索更多路径，会导致预取块数呈指数级增长。最多遍历一个非连续点的限制约束了预取器的前瞻能力。此外，由于每个缓存块仅能记录一个非连续点，而当指令块内存在多个已执行分支时，其覆盖范围将受到限制。</p>
+<p><img alt="img" src="pic/03.png" /></p>
+<h2 id="24-prescient-fetch">2.4 Prescient Fetch</h2>
+<p>利用空闲或并行资源进行指令预取已被提出。预知式预取技术 [22, 23, 24, 25] 使用辅助线程来识别关键计算和控制转移，并提前执行这些操作，以辅助运行较慢且与辅助线程并行执行的主线程。尽管这些方法可用于超越循环和函数调用的指令预取，但只有预知指令预取 [22] 是专门为此目的设计的。推测式线程技术识别所需的关键执行信息，并利用该信息领先于主线程发起指令预取。虽然推测式线程技术能够跨越多个取指间断点，但其前瞻能力仍然有限，因为它们以单个指令的粒度遍历未来指令流，因此通常需要遍历大量指令才能发现新的预取缓存块。</p>
+<h2 id="25-temporal-instruction-fetch-streaming-tifs">2.5 Temporal Instruction Fetch Streaming (TIFS)</h2>
+<p>时序指令取指流（TIFS）[7] 旨在解决辅助线程和基于取指/间断点机制的前瞻局限性。TIFS 不探索程序的控制流图，而是通过记录并重放重复出现的 L1 指令缺失序列，直接预测未来的指令缓存缺失。</p>
+<p><img alt="img" src="pic/04.png" /></p>
+<p>图 2.7展示了 TIFS 的设计。L1 指令缓存缺失被记录在指令缺失日志中，这是一个循环缓冲区，可在专用存储区或 L2 缓存内维护。独立的索引表保存从指令块地址到该地址在日志中最后记录位置的映射。对地址 C 的 L1-I 缺失会查询索引表 (1)，该表指向指令缺失日志中的一个条目 (2)。紧随 C 之后的地址流从日志中读取，缓存块地址被发送到流式值缓冲区 (3)。流式值缓冲区向 L2 请求流中的块 (4)，L2 返回内容 (5)。之后，在后续对 D 的 L1-I 缺失时，缓冲区将内容返回给 L1-I (6)。</p>
+<h2 id="26-ras-directed-instruction-prefetching-rdip">2.6 RAS-Directed Instruction Prefetching (RDIP)</h2>
+<p>传统取指导向预取器因无法预测循环返回分支和不可控条件分支而受限。非连续性预取器虽解决这些局限，但仅依赖单个PC值预测后续取指非连续性。同样，尽管TIFS增强了预读能力，仍仅维护从缓存块到日志位置的单一指针。这两种机制在遇到缓存块存在多控制流路径时都会失准，返回指令和switch语句等常见模式就会产生多路径。</p>
+<p>返回地址栈导向指令预取（RDIP）[26] 利用额外程序上下文信息提升预测精度与预读能力。其设计基于两点发现：（1）调用栈捕获的程序上下文与L1指令缓存未命中强相关；（2）现有高性能处理器中的返回地址栈（RAS）可精炼概括程序上下文。RDIP将预取操作与RAS内容构成的签名 关联，把签名及对应预取地址存入约64KB的签名表。每次调用和返回操作时查询该表触发预取，最终实现理想L1缓存潜在加速效果的70%，在服务器工作负载套件上较无预取基准提升11.5%。</p>
+<h2 id="27-proactive-instruction-fetch">2.7 Proactive Instruction Fetch</h2>
+<p>TIFS 融合了逐行预取器的顺序访问预测能力，但其性能优势更为显著，因为预测更精准、更及时。准确性的提升源于 TIFS 使用历史记录来确定需要预取的连续后续块数量。</p>
+<p>TIFS 通过多种方式提升预读能力：首先，它以缓存块粒度而非单条指令进行操作，解决了辅助线程方法的关键局限。因此，它可以跳过缓存块内的局部循环和次要控制流。通过将非连续分支和间接跳转目标单独记录为指令流组成部分，TIFS 能够支持任意数量的非连续分支。此外，由于记录了指令缓存未命中的扩展序列，它能快速预测远期指令，实现显著更强的预读能力。例如，逐行预测器仅能在访问函数首指令块后正确预取函数体，而 TIFS 通过预测函数调用及其在进入函数前的顺序访问，能在调用方执行至调用点前就提前预测并预取相同指令块。</p>
+<p>除了无法区分程序上下文外，TIFS 的预测准确性还受到其他控制不规则性的影响，这些不规则性导致 L1 指令缓存缺失序列出现细微差异。具体而言，原本重复的指令流可能因缓存替换的微小差异、沿误预测分支路径的指令预取影响，以及异步中断和操作系统陷阱的影响而被分割或过滤。主动指令预取 [27] 对 TIFS 设计进行了改进，以（1）记录已提交指令序列访问的缓存块序列（而非缓存缺失的指令预取），并（2）单独记录在中断/陷阱处理程序上下文中执行的流。该设计的一个关键创新是采用位向量对指令序列进行压缩表示，从而高效编码预取地址间的空间局部性。<strong>后续研究 [28] 将预取器元数据集中存储于多核共享的结构中，这在元数据被多核共享的同构设计中显著降低了存储成本。集中化将每核元数据降至最小容量，使得预取器即便在采用小核（例如移动/嵌入式平台中的核心）的多核设计中也能实用。</strong></p>
+<h2 id="28-conclusion">2.8 Conclusion</h2>
+<table>
+<thead>
+<tr>
+<th>预取器名称</th>
+<th>使用的关键信息</th>
+<th>预取深度</th>
+<th>准确率</th>
+<th>面积</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Next-Line</td>
+<td>地址顺序性</td>
+<td>几个cache块</td>
+<td>50%</td>
+<td>&lt;1KB</td>
+</tr>
+<tr>
+<td>FDIP</td>
+<td>BPU产生的预测</td>
+<td>取决于其准确性</td>
+<td>&gt;50%</td>
+<td>&lt;1KB</td>
+</tr>
+<tr>
+<td>Discontinuity</td>
+<td>预测程序的“断点”</td>
+<td>典型情况是提前一个分支</td>
+<td>&gt;50%</td>
+<td>&gt;1KB</td>
+</tr>
+<tr>
+<td>Prescient Fetch</td>
+<td>辅助线程</td>
+<td>取决于辅助线程执行速度</td>
+<td>&gt;50%</td>
+<td>&gt;1KB</td>
+</tr>
+<tr>
+<td>TIFS</td>
+<td>利用单次 L1miss 预测后续一系列 L1miss</td>
+<td>不和cache blocks数量绑定</td>
+<td>95%</td>
+<td>~64K/core</td>
+</tr>
+<tr>
+<td>RAS-directed</td>
+<td>利用上下文信息进一步区分时序流</td>
+<td>同上</td>
+<td>&gt;95%</td>
+<td>~64K/core</td>
+</tr>
+<tr>
+<td>Proactive-Fetch</td>
+<td>利用当前 L1 cache状态信息预测 L1miss 序列</td>
+<td>同上</td>
+<td>&gt;99%</td>
+<td>~256K/chip</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1190,12 +1516,12 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "/assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.action.edit"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
-        <script src="/javascripts/katex.js"></script>
+        <script src="../javascripts/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
